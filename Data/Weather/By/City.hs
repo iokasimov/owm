@@ -8,9 +8,9 @@ import Servant.Client (ClientM, client)
 import Data.Weather.Information (Information (..))
 
 type API = "weather" :>
-    QueryParam "q" Text :>
+    QueryParam "q" String :>
     QueryParam "appid" String :>
     Get '[JSON] Information
 
-endpoint :: Maybe Text -> Maybe String -> ClientM Information
+endpoint :: Maybe String -> Maybe String -> ClientM Information
 endpoint = client (Proxy :: Proxy API)
